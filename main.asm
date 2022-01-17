@@ -17,9 +17,9 @@ NUM_INT = 10								  ; Number of integers to get from user
 MAX_OUT_LEN = 12							  ; Max length of output string ('-' + 10 digits + terminating 0)
 
 getString MACRO prompt_address, instring_address
-	push	ecx
-	push	edx
-	mov		edx, prompt_address
+	push     ecx
+	push     edx
+	mov      edx, prompt_address
 	call	WriteString
 	mov	  	edx, instring_address
 	mov	  	ecx, MAX_INP_LEN - 1
