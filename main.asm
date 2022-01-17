@@ -19,7 +19,7 @@ MAX_OUT_LEN = 12							  ; Max length of output string ('-' + 10 digits + termin
 getString MACRO prompt_address, instring_address
 	push	ecx
 	push	edx
-	mov	  	edx, prompt_address
+	mov		edx, prompt_address
 	call	WriteString
 	mov	  	edx, instring_address
 	mov	  	ecx, MAX_INP_LEN - 1
