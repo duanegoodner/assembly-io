@@ -20,50 +20,50 @@ getString MACRO prompt_address, instring_address
 	push     ecx
 	push     edx
 	mov      edx, prompt_address
-	call	WriteString
-	mov	  	edx, instring_address
-	mov	  	ecx, MAX_INP_LEN - 1
-	call	ReadString
-	pop	  	edx
-	pop	  	ecx
+	call     WriteString
+	mov      edx, instring_address
+	mov      ecx, MAX_INP_LEN - 1
+	call     ReadString
+	pop      edx
+	pop      ecx
 ENDM
 
 displayString MACRO string_offset
-	push	edx
-	mov	  	edx, string_offset
-	call	WriteString
-	pop	  	edx
+	push	 edx
+	mov	  	 edx, string_offset
+	call	 WriteString
+	pop	  	 edx
 ENDM
 
 dislplayCharacter MACRO character
-	push	eax
-	mov	  	al, character
-	call	WriteChar
-	pop	  	eax
+	push	 eax
+	mov	  	 al, character
+	call	 WriteChar
+	pop	  	 eax
 ENDM
 
 
 .data
 
-intro_1		BYTE	"Low-level I/O Procedures and Implementing Macros", 10, 13, 0
-intro_2		BYTE	"Computer Architecture & Assembly Language Portfolio Project, March 2020", 10, 13, 0
-desc_1		BYTE	"Please provide 10 signed decimal integers.", 10, 13, 0
-desc_2		BYTE	"Each number needs to be small enough to fit inside a 32 bit register.", 10, 13, 0
-desc_3		BYTE	"After you have finished inputting the raw numbers a list of the integers,", 10, 13, 0
-desc_4		BYTE	"their sum, and their average value will be displayed.", 10, 13, 0
-entry_req	BYTE 	"Please enter a signed integer: ", 0
-error_msg	BYTE	"ERROR: You did not enter a signed number or your number was too big.", 10, 13, 0
-list_title	BYTE	"You entered the following numbers:", 10, 13, 0
-sum_title	BYTE	"The sum of these numbers is: ", 0
-mean_title	BYTE	"The rounded average (determined using floor division) is: ", 0
-byebye		BYTE	"Goodbye, and thanks for playing!", 0
+intro_1      BYTE	"Low-level I/O Procedures and Implementing Macros", 10, 13, 0
+intro_2      BYTE	"Computer Architecture & Assembly Language Portfolio Project, March 2020", 10, 13, 0
+desc_1       BYTE	"Please provide 10 signed decimal integers.", 10, 13, 0
+desc_2       BYTE	"Each number needs to be small enough to fit inside a 32 bit register.", 10, 13, 0
+desc_3       BYTE	"After you have finished inputting the raw numbers a list of the integers,", 10, 13, 0
+desc_4       BYTE	"their sum, and their average value will be displayed.", 10, 13, 0
+entry_req    BYTE 	"Please enter a signed integer: ", 0
+error_msg    BYTE	"ERROR: You did not enter a signed number or your number was too big.", 10, 13, 0
+list_title   BYTE	"You entered the following numbers:", 10, 13, 0
+sum_title    BYTE	"The sum of these numbers is: ", 0
+mean_title   BYTE	"The rounded average (determined using floor division) is: ", 0
+byebye       BYTE	"Goodbye, and thanks for playing!", 0
 
-input_str	BYTE	MAX_INP_LEN DUP (?)
-output_str	BYTE	MAX_OUT_LEN DUP (?)
+input_str    BYTE	MAX_INP_LEN DUP (?)
+output_str   BYTE	MAX_OUT_LEN DUP (?)
 
-int_array	SDWORD	NUM_INT DUP (?)
-array_sum	SDWORD	?
-array_mean	SDWORD	?
+int_array    SDWORD	NUM_INT DUP (?)
+array_sum    SDWORD	?
+array_mean   SDWORD	?
 
 
 
@@ -72,61 +72,61 @@ array_mean	SDWORD	?
 main PROC
 
 ; Introduce program
-	push 	OFFSET intro_1
-	push	OFFSET intro_2
-	push	OFFSET desc_1
-	push	OFFSET desc_2
-	push	OFFSET desc_3
-	push	OFFSET desc_4
-	call	introduction
+	push     OFFSET intro_1
+	push     OFFSET intro_2
+	push     OFFSET desc_1
+	push     OFFSET desc_2
+	push     OFFSET desc_3
+	push     OFFSET desc_4
+	call     introduction
 
 
 ; Get user values (and validate and convert str to numeric)
-	push	OFFSET entry_req
-	push	OFFSET error_msg
-	push	OFFSET input_str
-	push	OFFSET int_array
-	call	getUserIntegers
+	push     OFFSET entry_req
+	push     OFFSET error_msg
+	push     OFFSET input_str
+	push     OFFSET int_array
+	call     getUserIntegers
 
 
 ; Display array with list of integers
-	push	OFFSET list_title
-	push	OFFSET int_array
-	push	LENGTHOF int_array
-	push	TYPE int_array
-	push	OFFSET output_str
-	call	displayList
+	push     OFFSET list_title
+	push     OFFSET int_array
+	push     LENGTHOF int_array
+	push     TYPE int_array
+	push     OFFSET output_str
+	call     displayList
 
 
 ; Compute sum and average
-	push	OFFSET int_array
-	push	LENGTHOF int_array
-	push	OFFSET array_sum
-	push	OFFSET array_mean
-	call	computeSumAndMean
+	push     OFFSET int_array
+	push     LENGTHOF int_array
+	push     OFFSET array_sum
+	push     OFFSET array_mean
+	call     computeSumAndMean
 
 
 ; Display sum
-	push	OFFSET sum_title
-	push	OFFSET array_sum
-	push	OFFSET LENGTHOF array_sum
-	push	TYPE array_sum
-	push	OFFSET output_str
-	call	displayList
+	push     OFFSET sum_title
+	push     OFFSET array_sum
+	push     OFFSET LENGTHOF array_sum
+	push     TYPE array_sum
+	push     OFFSET output_str
+	call     displayList
 
 
 ; Display average
-	push	OFFSET mean_title
-	push	OFFSET	array_mean
-	push	OFFSET LENGTHOF array_mean
-	push	TYPE array_mean
-	push	OFFSET output_str
-	call	displayList
+	push     OFFSET mean_title
+	push     OFFSET	array_mean
+	push     OFFSET LENGTHOF array_mean
+	push     TYPE array_mean
+	push     OFFSET output_str
+	call     displayList
 
 
 ; Say goodbye
-	push	OFFSET byebye
-	call	farewell
+	push     OFFSET byebye
+	call     farewell
 
 
 	exit	; exit to operating system
@@ -162,15 +162,15 @@ introduction PROC USES edx,
 
 ; Use macro to display strings to screen
 	displayString intro1_address
-	call 	CrLF
+	call 	 CrLF
 	displayString intro2_address
-	call	CrLf
-	call	CrLf
+	call	 CrLf
+	call	 CrLf
 	displayString desc1_address
 	displayString desc2_address
 	displayString desc3_address
 	displayString desc4_address
-	call	CrLf
+	call	 CrLf
 
 	ret
 introduction ENDP
@@ -207,23 +207,23 @@ getUserIntegers PROC USES eax ecx edi,
 	entry_req_address:PTR DWORD
 	LOCAL list_length:DWORD
 
-	mov		list_length, NUM_INT
-	mov		ecx, list_length				  ; set counter
-	mov		edi, int_array_address			  ; move edi to 1st element of storage array
+	mov      list_length, NUM_INT
+	mov      ecx, list_length				  ; set counter
+	mov      edi, int_array_address			  ; move edi to 1st element of storage array
 	cld									  ; direction = forward
 
 ; Call readVal procedure to run ascii to integer conversion algorithm
 get_next_entry:
-	push	entry_req_address
-	push	error_msg_address
-	push	input_str_address
-	push	edi
-	call	readVal
+	push     entry_req_address
+	push     error_msg_address
+	push     input_str_address
+	push     edi
+	call     readVal
 
-	add		edi, 4						  ; advance edi to next element of write array
+	add		 edi, 4						  ; advance edi to next element of write array
 
-	loop	get_next_entry						  ; loop to next call of readVal
-	call	CrLf
+	loop	 get_next_entry						  ; loop to next call of readVal
+	call	 CrLf
 
 	ret
 getUserIntegers ENDP
@@ -265,61 +265,61 @@ readVal PROC USES eax ebx ecx edx esi edi,
 get_input:
 	getString entry_req_address, input_str_address
 
-	mov		edi, array_element_address
+	mov      edi, array_element_address
 
-	mov		length_of_string, eax
-	mov		ecx, eax						  ; set loop counter to length of string
-	mov		esi, input_str_address
+	mov      length_of_string, eax
+	mov      ecx, eax						  ; set loop counter to length of string
+	mov      esi, input_str_address
 
 ; Check for + and - sign at first element
-	mov		sign_one, 1					  ; will change to -1 if 1st char is '-'
-	mov		al, [esi]
-	cmp		al, 43						  ; check if 1st char is '+'
-	jne		check_for_minus_sign
-	inc		esi							  ; if 1st char is '+' advance esi 1 Byte...
-	dec		ecx							  ; and reduce counter by 1
+	mov      sign_one, 1					  ; will change to -1 if 1st char is '-'
+	mov      al, [esi]
+	cmp      al, 43						  ; check if 1st char is '+'
+	jne      check_for_minus_sign
+	inc      esi							  ; if 1st char is '+' advance esi 1 Byte...
+	dec      ecx							  ; and reduce counter by 1
 check_for_minus_sign:
-	mov		al, [esi]
-	cmp		al, 45
-	jne		check_for_numeric
-	mov		sign_one, -1
-	inc		esi
-	dec		ecx
+	mov      al, [esi]
+	cmp      al, 45
+	jne      check_for_numeric
+	mov      sign_one, -1
+	inc      esi
+	dec      ecx
 
 check_for_numeric:
-	mov		eax, 0						  ; initialize eax before using lodsb
-	mov		ebx, 0
+	mov      eax, 0						  ; initialize eax before using lodsb
+	mov      ebx, 0
 	cld
 
 conversion_algorithm:
 	lodsb								  ; load ascii val of next byte
 
 	; check if ascii val --> 0 - 9
-	cmp		al, 48
-	jl		invalid_data
-	cmp		al, 57
-	jg		invalid_data
+	cmp      al, 48
+	jl       invalid_data
+	cmp      al, 57
+	jg       invalid_data
 
-	sub		al, 48						  ; convert numeric ascii value to corresponding numeric
+	sub      al, 48						  ; convert numeric ascii value to corresponding numeric
 
-	movzx	edx, al						  ; put in 32 bit reg to be safe. Sign extending may also be OK?
-	imul	edx, sign_one						  ; if value is neg, this changes edx to neg
+	movzx    edx, al						  ; put in 32 bit reg to be safe. Sign extending may also be OK?
+	imul     edx, sign_one						  ; if value is neg, this changes edx to neg
 
-	imul	ebx, 10							  ; multiply by 10 for each digit
-	jo		invalid_data					  ; check for overflow
-	add		ebx, edx						  ; add current loop's digit (*10^0 = 1)
-	jo		invalid_data					  ; check for overflow
+	imul     ebx, 10							  ; multiply by 10 for each digit
+	jo       invalid_data					  ; check for overflow
+	add      ebx, edx						  ; add current loop's digit (*10^0 = 1)
+	jo       invalid_data					  ; check for overflow
 
-	loop	conversion_algorithm
+	loop     conversion_algorithm
 
-	jmp		valid_entry
+	jmp      valid_entry
 
 invalid_data:
 	displayString error_msg_address
-	jmp		get_input
+	jmp      get_input
 
 valid_entry:
-	mov		[edi], ebx
+	mov      [edi], ebx
 
 	ret
 readVal ENDP
@@ -358,29 +358,29 @@ displayList PROC USES ecx esi edi,
 	array_address:PTR DWORD,
 	list_title_address:PTR DWORD
 
-	mov		ecx, list_length				  ; initialize loop counter
-	mov		esi, array_address				  ; set esi to address of 1st list element
-	mov		edi, output_str_address			  ; edi points to desination string
+	mov      ecx, list_length				  ; initialize loop counter
+	mov      esi, array_address				  ; set esi to address of 1st list element
+	mov      edi, output_str_address			  ; edi points to desination string
 
 	displayString list_title_address			  ; use macro
 
 ; Call writeVal procedure to write each element
 write_list_elements:
-	push	edi
-	push	esi
-	call	writeVal
-	add		esi, element_size				  ; advance to next element of array
-	cmp		ecx, 1
-	je		after_comma_space
+	push     edi
+	push     esi
+	call     writeVal
+	add      esi, element_size				  ; advance to next element of array
+	cmp      ecx, 1
+	je       after_comma_space
 
 	dislplayCharacter ','					  ; if not at last element, need ', '
 	dislplayCharacter ' '
 
 after_comma_space:
 
-	loop	write_list_elements
-	call	CrLf
-	call	CrLf
+	loop     write_list_elements
+	call     CrLf
+	call     CrLf
 
 	ret
 displayList ENDP
@@ -412,53 +412,53 @@ writeVal PROC USES esi edi ecx eax ebx edx,
 	LOCAL int_value:SDWORD,
 	sign_one:SDWORD
 
-	mov		edi, string_address				; point edi to output string
-	mov		ecx, MAX_OUT_LEN				; initialize counter
-	mov		al, 0
+	mov      edi, string_address				; point edi to output string
+	mov      ecx, MAX_OUT_LEN				; initialize counter
+	mov      al, 0
 	cld									  	; direction = forward
-	rep		stosb						  	; output string now filled with zeros
-	dec		edi							  	; will keep zero in last element
-	dec		edi							  	; edi now points at 2nd to last elemennt
+	rep      stosb						  	; output string now filled with zeros
+	dec      edi							  	; will keep zero in last element
+	dec      edi							  	; edi now points at 2nd to last elemennt
 
-	mov		esi, integer_address			; esi points to address of integer to write
-	mov		ecx, MAX_OUT_LEN
-	dec		ecx							  	; ecx = MAX_OUT_LEN - 1 b/c keep zero at end
+	mov      esi, integer_address			; esi points to address of integer to write
+	mov      ecx, MAX_OUT_LEN
+	dec      ecx							  	; ecx = MAX_OUT_LEN - 1 b/c keep zero at end
 
 ; Check for sign of integer value
-	mov		sign_one, 1					  	; intialize to +1. Will change to -1 if needed
-	mov		eax, [esi]
-	cmp		eax, 0
-	jge		sign_val_stored				  	; if integer is positive, keep sign_one = +1
-	mov		sign_one, -1					; if integer is neg, change sign_one to -1
+	mov      sign_one, 1					  	; intialize to +1. Will change to -1 if needed
+	mov      eax, [esi]
+	cmp      eax, 0
+	jge      sign_val_stored				  	; if integer is positive, keep sign_one = +1
+	mov      sign_one, -1					; if integer is neg, change sign_one to -1
 sign_val_stored:
 
 ; Integer to ascii conversion algorithm
 	std									  	; direction = backward
-	mov		int_value, eax					; initialize intermediate value
+	mov      int_value, eax					; initialize intermediate value
 find_next_string_element:
-	mov		eax, int_value					; eax already equals int_value @ start of 1st loop, but not others
+	mov      eax, int_value					; eax already equals int_value @ start of 1st loop, but not others
 	cdq									  	; sign extend eax to edx.
-	mov		ebx, 10
-	idiv	ebx
-	mov		int_value, eax					; quotient saved in int_value.
-	imul	edx, sign_one					; if remainder is neg, change to positive
-	add		edx, 48						  	; convert (always positive) remainder to ascii code
-	mov		eax, edx						; ascii code to eax (< 10d, so fits in al)
+	mov      ebx, 10
+	idiv	 ebx
+	mov      int_value, eax					; quotient saved in int_value.
+	imul	 edx, sign_one					; if remainder is neg, change to positive
+	add      edx, 48						  	; convert (always positive) remainder to ascii code
+	mov      eax, edx						; ascii code to eax (< 10d, so fits in al)
 	stosb								  	; write ascii code to string array and dec edi
-	cmp		int_value, 0					; if quotient = 0, done converting digits..
-	je		done_with_num_digits			; ...so exit loop
-	loop	find_next_string_element
+	cmp      int_value, 0					; if quotient = 0, done converting digits..
+	je       done_with_num_digits			; ...so exit loop
+	loop     find_next_string_element
 done_with_num_digits:
 
 ; Determine if need to write a '-'
-	cmp		sign_one, 1
-	jne		store_minus_sign
-	inc		edi							  	; if no "-" needed, move edi to start of string
-	jmp		ready_to_write
+	cmp      sign_one, 1
+	jne      store_minus_sign
+	inc      edi							  	; if no "-" needed, move edi to start of string
+	jmp      ready_to_write
 
 store_minus_sign:
-	mov		al, 45
-	mov		[edi], al
+	mov      al, 45
+	mov      [edi], al
 
 ready_to_write:
 	displayString edi
@@ -493,32 +493,32 @@ computeSumAndMean PROC USES ebx ecx edx esi edi,
 	array_length:DWORD,
 	array_address:PTR DWORD
 
-	mov		ebx, 0						  	; ebx will be the accumulator
+	mov      ebx, 0						  	; ebx will be the accumulator
 	cld									  	; direction = forward
-	mov 	esi, array_address				; esi points to 1st element in intege list
-	mov		ecx, array_length				; set loop counter
+	mov      esi, array_address				; esi points to 1st element in intege list
+	mov      ecx, array_length				; set loop counter
 
 ; Calculate Sum
 next_array_element:
 	lodsd								  	; current element to eax and advance esi to next
-	add		ebx, eax						; add current element to accumulator
-	loop	next_array_element
-	mov		edi, array_sum_address
-	mov		[edi], ebx					  	; save sum to memory
+	add      ebx, eax						; add current element to accumulator
+	loop     next_array_element
+	mov      edi, array_sum_address
+	mov      [edi], ebx					  	; save sum to memory
 
 ; Calculate mean
-	mov		eax, ebx
+	mov      eax, ebx
 	cdq
-	idiv	array_length					; eax = quotient, edx = remainder
-	cmp		edx, 0
-	jge		properly_rounded				; floor div means no change if dividend is positive or 0
+	idiv     array_length					; eax = quotient, edx = remainder
+	cmp      edx, 0
+	jge      properly_rounded				; floor div means no change if dividend is positive or 0
 
 ; Rounding of mean if remainder is neg
-	dec		eax							  	; remainder < 0 means sum was neg and need to round down
+	dec      eax							  	; remainder < 0 means sum was neg and need to round down
 
 properly_rounded:
-	mov		edi, array_mean_address
-	mov		[edi], eax
+	mov      edi, array_mean_address
+	mov      [edi], eax
 
 	ret
 computeSumAndMean ENDP
@@ -543,7 +543,7 @@ farewell PROC USES edx,
 	byebye_address:PTR DWORD
 
 	displayString byebye_address			; Use macro
-	call 	CrLf
+	call     CrLf
 
 	ret
 farewell ENDP
