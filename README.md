@@ -10,11 +10,9 @@ The code required to execute the simple computation represents only a small frac
 
 While conversions between integers and strings were "the hard way," (i.e. without the aid of any libraries) `ReadString` and `WriteSting` macros from the [Irvine library](https://asmirvine.com/) were used to convert keyboard input to strings, and strings to terminal-displayed characters.
 
-<br>
+## Screenshot
 
 ![screenshot](/images/run_demo.PNG)
-
-<br>
 
 ## Downloading and running the executable
 
