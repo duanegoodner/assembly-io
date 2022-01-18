@@ -16,7 +16,7 @@ While conversions between integers and strings were "the hard way," (i.e. withou
 
 <br>
 
-## Running the code
+## Downloading and running the executable
 
 If you are running Windows and would like test the program, you can download file `bin/main.exe` and then enter `./main` at the command prompt from the folder where you have saved the file.
 
