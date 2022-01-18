@@ -20,4 +20,8 @@ While conversions between integers and strings were "the hard way," (i.e. withou
 
 If you are running Windows and would like test the program, you can download file `bin/main.exe` and then enter `./main` at the command prompt from the folder where you have saved the file.
 
+## Source code
+
+If you would like to modify and/or recompile the source code in `/src/main` but do not have experience with MASM, [this link](https://asmirvine.com/gettingStartedVS2019/index.htm) from the Irvine website contains instructions on how to set up a MASM development environment in Microsoft Visual Studio.
+
 
