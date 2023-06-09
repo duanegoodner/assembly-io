@@ -10,16 +10,75 @@ The code required to execute the simple computation represents only a small frac
 
 While conversions between integers and strings were "the hard way," (i.e. without the aid of any libraries) `ReadString` and `WriteSting` macros from the [Irvine library](https://asmirvine.com/) were used to convert keyboard input to strings, and strings to terminal-displayed characters.
 
-## Screenshot
 
-![screenshot](/images/run_demo.PNG)
+## Getting Started
 
-## Downloading and running the executable
+### 1. Clone this repository
+```
+$  git clone https://github.com/duanegoodner/lowlevel_io_meancalc.git
+```
 
-If you are running Windows and would like test the program, you can download file `bin/main.exe` and then enter `./main` at the command prompt from the folder where you have saved the file.
+### 2. Download and install the 32 bit MASM SDK
 
-## Source code
-
-If you would like to modify and/or recompile the source code in `/src/main` but do not have experience with MASM, [this link](https://asmirvine.com/gettingStartedVS2019/index.htm) from the Irvine website contains instructions on how to set up a MASM development environment in Microsoft Visual Studio.
+Go to http://masm32.com/download.htm. Download and extract archive `masm32v11r.zip`. Run file `install.exe` located in the extracted folder to install the SDK.
 
 
+### 3. Download the Irvine libraries
+
+Go to https://github.com/surferkip/asmbook, and download `Irvine.zip`. Extract directory `irvine` from the archive. Save the `irvine` directory in `lowlevel_io_meancalc/lib`. 
+
+### 4. Assemble the source code in to a object file
+From directory `lowlevel_io_meancalc` run:
+
+```
+$ \masm32\bin\ml /Fo .\bin\/main.obj /c /Zd /coff /I.\lib\irvine .\src\main.asm
+```
+
+### 5. Run the linker to create the executable file 
+
+```
+$ \masm32\bin\Link /SUBSYSTEM:CONSOLE /OUT:.\bin\main.exe /LIBPATH:.\lib\irvine .\bin\main.obj
+```
+
+### 6. Run the program
+From the `lowlevel_io_meancalc` directory, run:
+
+```
+$ .\bin\main.exe
+```
+
+Example interactive session:
+
+```
+Low-level I/O Procedures and Implementing Macros
+
+Computer Architecture & Assembly Language Portfolio Project, March 2020
+
+
+Please provide 10 signed decimal integers.
+Each number needs to be small enough to fit inside a 32 bit register.
+After you have finished inputting the raw numbers a list of the integers,
+their sum, and their average value will be displayed.
+
+Please enter a signed integer: 9
+Please enter a signed integer: -84365
+Please enter a signed integer: 4837623
+Please enter a signed integer: -100000000
+Please enter a signed integer: 2147483655
+ERROR: You did not enter a signed number or your number was too big.
+Please enter a signed integer: nine
+ERROR: You did not enter a signed number or your number was too big.
+Please enter a signed integer: 2587
+Please enter a signed integer: -5642871
+Please enter a signed integer: 4
+Please enter a signed integer: -731946
+Please enter a signed integer: 258
+Please enter a signed integer: 456
+
+You entered the following numbers:
+9, -84365, 4837623, -100000000, 2587, -5642871, 4, -731946, 258, 456
+
+The sum of these numbers is: -101618245
+
+The rounded average (determined using floor division) is: -10161825
+```

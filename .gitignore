@@ -1,3 +1,6 @@
 *.lst
 *.sln
 *.vcxproj
+
+lib/*
+!lib/.gitkeep

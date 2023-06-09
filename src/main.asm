@@ -10,7 +10,12 @@ TITLE Low-level I/O Procedures and Implementing Macros
 ;				this value to screen as as a string.
 
 
-INCLUDE Irvine32.inc
+include Irvine32.inc
+include Macros.inc
+includelib Kernel32.lib
+includelib Irvine32.Lib
+includelib User32.lib
+
 
 MAX_INP_LEN = 30					; Max length of input string
 NUM_INT = 10						; Number of integers to get from user
