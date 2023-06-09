@@ -14,13 +14,20 @@ One takeaway from this project is that implementing conceptually simple tasks li
 
 ## Requirements
 
-Windows or a Mac/Linux system with [DOSBox](https://www.dosbox.com/).
+Windows or a Linux/Mac system with [Wine](https://www.winehq.org/).
 
 
 
-## Getting Started
+## Getting Started on Linux/Mac with Wine
+
+Follow the instructions [here](https://reberhardt.com/blog/programming/2016/01/30/masm-on-mac-or-linux.html), and then follow the steps listed in the **Getting Started on Windows** section below.
+
+
+
+## Getting Started on Windows
 
 ### 1. Clone this repository
+
 ```
 $  git clone https://github.com/duanegoodner/lowlevel_io_meancalc.git
 ```
@@ -38,20 +45,23 @@ Go to https://github.com/surferkip/asmbook, and download `Irvine.zip`. Extract d
 From directory `lowlevel_io_meancalc` run:
 
 ```
-$ \masm32\bin\ml /Fo .\bin\/main.obj /c /Zd /coff /I.\lib\irvine .\src\main.asm
+$ /masm32/bin/ml /Fo ./bin/main.obj /c /Zd /coff /I./lib/irvine ./src/main.asm
 ```
 
 ### 5. Run the linker to create the executable file 
 
 ```
-$ \masm32\bin\Link /SUBSYSTEM:CONSOLE /OUT:.\bin\main.exe /LIBPATH:.\lib\irvine .\bin\main.obj
+$ \masm32\bin\Link /SUBSYSTEM:CONSOLE /OUT:./bin/main.exe /LIBPATH:./lib/irvine ./bin/main.obj
 ```
 
+
+
 ### 6. Run the program
+
 From the `lowlevel_io_meancalc` directory, run:
 
 ```
-$ .\bin\main.exe
+$ ./bin/main.exe
 ```
 
 Example interactive session:
