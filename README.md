@@ -6,7 +6,9 @@
 
 This assembly language program (written in Microsoft Macro Assembler, aka **MASM**) was the final project for an undergraduate Computer Architecture and Assembly course in March 2020.
 
-The program reads a series of user-provided ASCII strings representations of integers and performs data validation to identify inputs that can be represented as 32-bit signed integers. After converting a series of 10 valid string inputs to integer form, the program computes the sum and mean of these values, converts these results to strings, and outputs those strings to the terminal. One takeaway from this project is that implementing conceptually simple tasks like the ones performed here can require a significant amount of assembly code (in this case, hundreds of lines). The sum and mean computations represent a small fraction of the total program. The majority of the code and compute time is spent reading and validating user input, converting string representations to / from integers, and managing data in the stack and registers.
+The program reads a series of user-provided ASCII strings representations of integers and performs data validation to identify inputs that can be represented as 32-bit signed integers. After converting a series of 10 valid string inputs to integer form, the program computes the sum and mean of these values, converts these results to strings, and outputs those strings to the terminal.
+
+One takeaway from this project is that implementing conceptually simple tasks like the ones performed here can require a significant amount of assembly code (in this case, hundreds of lines). The sum and mean computations represent a small fraction of the total program. The majority of the code and compute time is spent reading and validating user input, converting string representations to / from integers, and managing data in the stack and registers.
 
 
 
