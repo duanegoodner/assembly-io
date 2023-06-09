@@ -1,10 +1,8 @@
-# Low Level IO and Mean Calculation (in MASM)
-
-
-
-## Description
+# Low Level IO and Integer Arithmetic
 
 This assembly language program (written in Microsoft Macro Assembler, aka **MASM**) was the final project for an undergraduate Computer Architecture and Assembly course in March 2020.
+
+## Description
 
 The program reads a series of user-provided ASCII strings representations of integers and performs data validation to identify inputs that can be represented as 32-bit signed integers. After converting a series of 10 valid string inputs to integer form, the program computes the sum and mean of these values, converts these results to strings, and outputs those strings to the terminal.
 
