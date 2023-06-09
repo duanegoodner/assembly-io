@@ -1,4 +1,4 @@
-# Low Level IO and Integer Arithmetic
+# Assembly Language Low Level IO
 
 This assembly language program (written in Microsoft Macro Assembler, aka **MASM**) was the final project for an undergraduate Computer Architecture and Assembly course in March 2020.
 
