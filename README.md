@@ -1,6 +1,6 @@
-# Assembly Language Low Level IO
+# assembly-io
 
-This assembly language program (written in Microsoft Macro Assembler, aka **MASM**) was the final project for an undergraduate Computer Architecture and Assembly course in March 2020.
+Low level IO and arithmetic in Microsoft Macro Assembler (**MASM**).
 
 ## Description
 
@@ -9,52 +9,60 @@ The program reads a series of user-provided ASCII strings representations of int
 One takeaway from this project is that implementing conceptually simple tasks like the ones performed here can require a significant amount of assembly code (in this case, hundreds of lines). The sum and mean computations represent a small fraction of the total program. The majority of the code and compute time is spent reading and validating user input, converting string representations to / from integers, and managing data in the stack and registers.
 
 
+## System Requirements
 
-## Requirements
+MASM Assembly Language requires a Windows environment to assemble and run.
 
-Windows or a Linux/Mac system with [Wine](https://www.winehq.org/).
+#### Windows Users
+
+No extra setup is needed.
+
+#### Non-Windows Users
+
+If you are not on a physical Windows machine, there are many good options:
+ 
+- [Wine](https://www.winehq.org/) (Linux)
+- [KVM / QEMU](https://sysguides.com/install-a-windows-11-virtual-machine-on-kvm) (Linux)
+- [VirtualBox](https://www.virtualbox.org/) (Linux, Mac/Intel)
+- [Parallels Desktop](https://www.parallels.com/) (Mac/Apple Silicon, Mac/Intel)
+- [VMware Fusion](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion) 
+- [UTM]() (Mac/Apple Silicon)
+- [Windows 365 Cloud PC](https://www.microsoft.com/en-us/windows-365)
+
+---
 
 
+## Building
 
-## Getting Started on Linux/Mac with Wine
-
-Follow the instructions [here](https://reberhardt.com/blog/programming/2016/01/30/masm-on-mac-or-linux.html), and then follow the steps listed in the **Getting Started on Windows** section below.
-
-
-
-## Getting Started on Windows
 
 ### 1. Clone this repository
 
 ```
-$  git clone https://github.com/duanegoodner/lowlevel_io_meancalc.git
+git clone https://github.com/duanegoodner/assembly-io.git
+cd assembly-io
 ```
 
 ### 2. Download and install the 32 bit MASM SDK
 
 Go to http://masm32.com/download.htm. Download and extract archive `masm32v11r.zip`. Run file `install.exe` located in the extracted folder to install the SDK.
 
-
 ### 3. Download the Irvine libraries
 
-Go to https://github.com/surferkip/asmbook, and download `Irvine.zip`. Extract directory `irvine` from the archive. Save the `irvine` directory in `lowlevel_io_meancalc/lib`. 
+Go to https://github.com/surferkip/asmbook, and download `Irvine.zip`. Extract directory `irvine` from the archive. Save the `irvine` directory under `assembly-io/lib/` in your local repo
 
 ### 4. Assemble the source code in to a object file
-From directory `lowlevel_io_meancalc` run:
+From your local `assembly-io` repo root run:
 
 ```
-$ /masm32/bin/ml /Fo ./bin/main.obj /c /Zd /coff /I./lib/irvine ./src/main.asm
+/masm32/bin/ml /Fo ./bin/main.obj /c /Zd /coff /I./lib/irvine ./src/main.asm
 ```
 
 ### 5. Run the linker to create the executable file 
-
 ```
-$ \masm32\bin\Link /SUBSYSTEM:CONSOLE /OUT:./bin/main.exe /LIBPATH:./lib/irvine ./bin/main.obj
+\masm32\bin\Link /SUBSYSTEM:CONSOLE /OUT:./bin/main.exe /LIBPATH:./lib/irvine ./bin/main.obj
 ```
 
-
-
-### 6. Run the program
+## Running
 
 From the `lowlevel_io_meancalc` directory, run:
 
